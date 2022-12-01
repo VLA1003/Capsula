@@ -7,17 +7,19 @@ using TMPro;
 public class Contador : MonoBehaviour
 {
     [SerializeField]
-    public TextMeshProUGUI contador;
+    public TextMeshProUGUI textoTiempo;
 
     public GameObject conjuntoCapsula;
     public Slider barraTiempo;
     float tiempoPartida;
+    float tiempoMaximo = 30f;
+    float tiempoMinimo = 10f;
     bool tiempoActivo = false;
 
     public void Start()
     {
-        // tiempoPartida = Random.Range(10f, 30f);
-        tiempoPartida = 3;
+        tiempoPartida = Random.Range(tiempoMinimo, tiempoMaximo);
+        barraTiempo.maxValue = tiempoPartida;
         tiempoActivo = true;
     }
 
@@ -29,14 +31,14 @@ public class Contador : MonoBehaviour
             if (tiempoPartida > 0)
             {
                 tiempoPartida -= Time.deltaTime;
+                barraTiempo.value = tiempoPartida;
             }
             if (tiempoPartida <= 0)
             {
                 tiempoPartida = 0;
                 conjuntoCapsula.SetActive(false);
             }
-
         }
-        contador.text = segundos.ToString();
+        textoTiempo.text = segundos.ToString();
     }
 }
