@@ -36,7 +36,7 @@ public class Contador : MonoBehaviour
             if (tiempoPartida <= 0)
             {
                 tiempoPartida = 0;
-                conjuntoCapsula.SetActive(false);
+                gameObject.SetActive(false);
             }
         }
         textoTiempo.text = segundos.ToString();
